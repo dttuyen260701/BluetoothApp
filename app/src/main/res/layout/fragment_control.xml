@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_StatusCtrl_Frag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_Control"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_Control_Fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/app_themes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_weight="1" />
+
+                <TextView
+                    android:id="@+id/txt_Tittle_Control_Fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Control"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_Descrip_Control_Frag"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Description Food"
+                    android:padding="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="h,1:1"
+                    app:layout_constraintEnd_toEndOf="@+id/toolbar_Control_Fragment"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/info_img" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_StatusCtrl_Frag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_mainCtrl_Frag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_weight="7">
+
+
+        <VideoView
+            android:id="@+id/video_Preview_Control"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333"
+            app:layout_constraintVertical_weight="11" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_mainCtrl_Frag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/custom_layout_garbage_can_head"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_StatusCtrl_Frag"
+        app:layout_constraintVertical_weight="6">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_btn_Door"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btnPower_Ctrl_Frag"
+            app:layout_constraintDimensionRatio="w,5:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <ImageButton
+                android:id="@+id/btn_down_left"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/custom_button_control"
+                android:contentDescription="Left Door"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toStartOf="@+id/btn_down_right"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/down"
+                app:tint="@color/black" />
+
+            <ImageButton
+                android:id="@+id/btn_down_right"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_button_control"
+                android:contentDescription="Close/Open"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_down_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/down"
+                app:tint="@color/black" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/btnPower_Ctrl_Frag"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@null"
+            android:contentDescription="Power On/Off"
+            android:padding="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_btn_Door"
+            app:srcCompat="@drawable/power_on" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Support shaft"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_btn_Door"
+            app:layout_constraintEnd_toEndOf="@+id/layout_btn_Door"
+            app:layout_constraintStart_toStartOf="@+id/layout_btn_Door"
+            app:layout_constraintTop_toTopOf="@+id/layout_btn_Door" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
