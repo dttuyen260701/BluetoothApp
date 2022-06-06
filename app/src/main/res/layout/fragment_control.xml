@@ -115,8 +115,9 @@
             android:layout_height="70dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
+            android:background="@drawable/custom_button_inf_frag"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/btnPower_Ctrl_Frag"
+            app:layout_constraintBottom_toTopOf="@+id/btnMode_control_Frag"
             app:layout_constraintDimensionRatio="w,5:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +162,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
-            android:id="@+id/btnPower_Ctrl_Frag"
+            android:id="@+id/btnMode_control_Frag"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:background="@null"
@@ -186,6 +187,33 @@
             app:layout_constraintEnd_toEndOf="@+id/layout_btn_Door"
             app:layout_constraintStart_toStartOf="@+id/layout_btn_Door"
             app:layout_constraintTop_toTopOf="@+id/layout_btn_Door" />
+
+        <ImageView
+            android:id="@+id/btn_servor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/custom_button_control"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMode_control_Frag"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toEndOf="@+id/btnMode_control_Frag"
+            app:layout_constraintTop_toBottomOf="@+id/layout_btn_Door"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/lever" />
+
+        <TextView
+            android:id="@+id/txt_servor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Sweep"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_servor"
+            app:layout_constraintEnd_toEndOf="@+id/btn_servor"
+            app:layout_constraintStart_toStartOf="@+id/btn_servor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
