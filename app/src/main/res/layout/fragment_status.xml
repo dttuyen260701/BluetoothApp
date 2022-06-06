@@ -102,15 +102,34 @@
                 android:layout_weight="2"
                 android:background="@drawable/custom_layout_garbage_can_head">
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <TextView
+                    android:id="@+id/txtThread_status_Frag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Thread: "
+                    android:textColor="@color/app_themes"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/txtThreadvalue_Frag"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtThreadvalue_Frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-451"
+                    android:textColor="@color/app_themes"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/garbage" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtThread_status_Frag"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout

@@ -27,7 +27,8 @@ public class Fragment_Status extends Fragment {
     private Button btnReload_Status_Frag, btnchangeThread_Status_Frag;
     private ImageView img_Descrip_Status_Frag, img_NonRecycle_Status_frag,
             img_Recycle_Status_frag;
-    private TextView txtPer_NonRecycle_Status_Frag, txtPer_Recycle_Status_Frag;
+    private TextView txtPer_NonRecycle_Status_Frag, txtPer_Recycle_Status_Frag,
+            txtThreadvalue_Frag;
     private Garbage_Can garbage_can;
     private long mLastClick_Reload = 0, mLastClick_TakePhoto = 0;
 
@@ -49,6 +50,7 @@ public class Fragment_Status extends Fragment {
         img_Recycle_Status_frag = (ImageView) view.findViewById(R.id.img_Recycle_Status_frag);
         txtPer_NonRecycle_Status_Frag = (TextView) view.findViewById(R.id.txtPer_NonRecycle_Status_Frag);
         txtPer_Recycle_Status_Frag = (TextView) view.findViewById(R.id.txtPer_Recycle_Status_Frag);
+        txtThreadvalue_Frag = (TextView) view.findViewById(R.id.txtThreadvalue_Frag);
 
         updateView();
 
@@ -114,6 +116,7 @@ public class Fragment_Status extends Fragment {
     }
 
     public void updateView(){
+        txtThreadvalue_Frag.setText(" " + garbage_can.getThread());
         float per_Recycle = garbage_can.getVolume_recycle()/ Constant_Values.Volume_Machine,
                 per_NonRecycle = garbage_can.getVolume_nonRecycle()/Constant_Values.Volume_Machine;
         img_NonRecycle_Status_frag.setImageLevel((int) (10000*per_NonRecycle));

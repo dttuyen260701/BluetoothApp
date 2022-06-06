@@ -44,7 +44,6 @@ public class Fragment_Control extends Fragment {
         img_Descrip_Control_Frag = (ImageView) view.findViewById(R.id.img_Descrip_Control_Frag);
         btn_servor = (ImageView) view.findViewById(R.id.btn_servor);
         video_Preview_Control = (VideoView) view.findViewById(R.id.video_Preview_Control);
-        updateView();
 
         if(garbage_can.isMode()){
             isAuto();
@@ -107,6 +106,12 @@ public class Fragment_Control extends Fragment {
                 if (SystemClock.elapsedRealtime() - mLastClick_Mode < 4000){
                     return;
                 }
+                garbage_can.setMode(!garbage_can.isMode());
+                if(garbage_can.isMode()){
+                    isAuto();
+                } else {
+                    isControl();
+                }
                 mLastClick_Mode = SystemClock.elapsedRealtime();
                 String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vertical_rect;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
@@ -115,22 +120,19 @@ public class Fragment_Control extends Fragment {
         });
     }
 
-    private void isControl(){
+    private void isAuto(){
         //dong cua k nhan rac
         btnMode_control_Frag.setImageResource(R.drawable.power_on);
         btn_down_left.setEnabled(false);
         btn_down_right.setEnabled(false);
+        btn_servor.setEnabled(false);
     }
 
-    private void isAuto(){
+    private void isControl(){
         //mo cua thung rac
         btnMode_control_Frag.setImageResource(R.drawable.power_off);
+        btn_servor.setEnabled(true);
         btn_down_left.setEnabled(true);
         btn_down_right.setEnabled(true);
-    }
-
-
-    public void updateView(){
-
     }
 }

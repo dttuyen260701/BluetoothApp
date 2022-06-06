@@ -213,7 +213,8 @@
                     android:background="@drawable/custom_button_control"
                     android:gravity="center"
                     android:text="-"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <EditText
                     android:id="@+id/txtStep"
@@ -221,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.5"
                     android:ems="10"
-                    android:hint="Scale"
+                    android:hint="Step"
                     android:inputType="textPersonName"
                     android:textSize="18sp"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
@@ -234,7 +235,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/custom_button_control"
                     android:text="+"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -258,13 +260,14 @@
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 <Button
-                    android:id="@+id/btnsend"
+                    android:id="@+id/btnSend"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/custom_button_control"
-                    android:text="Change" />
+                    android:text="Change"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>

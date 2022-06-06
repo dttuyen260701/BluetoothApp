@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 121;
     private static BottomNavigationView bottom_Navigation;
     private Fragment fragment_Status, fragment_Control, fragment_Information, fragment_weight;
-    private static Garbage_Can garbage_can;
+    private Garbage_Can garbage_can;
     private static CountDownTimer countDownTimer;
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(garbage_can == null)
-            garbage_can = new Garbage_Can("", true,100f, 100f, -475);
+            garbage_can = new Garbage_Can("", true,-451, 100f, 100f, -475);
         Constant_Values.garbage_can = garbage_can;
         AnhXa();
         setUp();
@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (bottom_Navigation.getSelectedItemId()){
                     case R.id.bottom_Status:
                         ((Fragment_Status) fragment_Status).updateView();
-                        break;
-                    case R.id.bottom_Control:
-                        ((Fragment_Control) fragment_Control).updateView();
                         break;
                     case R.id.bottom_setting:
                         ((Fragment_Weight) fragment_weight).updateView();
