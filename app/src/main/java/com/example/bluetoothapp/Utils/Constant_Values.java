@@ -17,4 +17,12 @@ public class Constant_Values {
     public static String IMAGE_URL = SERVER_URL +"/static/img/img2.jpg";
     public static String URL_ABOUT_US = "https://www.facebook.com";
     public static String URL_TERM_OF_SERVICE = "https://www.youtube.com";
+
+    // Message types sent from the BluetoothChatService Handler
+    public static int MESSAGE_STATE_CHANGE1 = 1;
+    public static int MESSAGE_READ = 2;
+    public static int MESSAGE_WRITE = 3;
+    public static int MESSAGE_DEVICE_NAME = 4;
+    public static int MESSAGE_TOAST = 5;
+
 }

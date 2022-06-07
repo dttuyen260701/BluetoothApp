@@ -219,12 +219,13 @@
                 <EditText
                     android:id="@+id/txtStep"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     android:ems="10"
+                    android:gravity="center"
                     android:hint="Step"
                     android:inputType="textPersonName"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 <Button
@@ -245,18 +246,19 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <EditText
                     android:id="@+id/txtScale_value"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_weight="4"
                     android:ems="10"
+                    android:gravity="center"
                     android:hint="Scale Value"
                     android:inputType="textPersonName"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 <Button

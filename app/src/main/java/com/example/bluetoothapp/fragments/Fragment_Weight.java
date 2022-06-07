@@ -57,6 +57,38 @@ public class Fragment_Weight extends Fragment {
         rcl_Weight_Frag = (RecyclerView) view.findViewById(R.id.rcl_Weight_Frag);
         img_Descrip_Weight_Frag= (ImageView) view.findViewById(R.id.img_Descrip_Weight_Frag);
         updateView();
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHandle(btn1);
+            }
+        });
+
+        btn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHandle(btn10);
+            }
+        });
+
+        btn100.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHandle(btn100);
+            }
+        });
+
+        btn1000.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onHandle(btn1000);
+            }
+        });
+    }
+
+    private void onHandle(Button btn){
+        txtStep.setText(btn.getText().toString());
     }
 
     public void updateView(){
