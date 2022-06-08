@@ -55,7 +55,7 @@ import java.util.UUID;
 @SuppressLint("HandlerLeak")
 public class MainActivity extends AppCompatActivity {
     BluetoothAdapter bluetoothAdapter;
-    BluetoothSocket btSocket = null;
+    static BluetoothSocket btSocket = null;
     Boolean isBtConnected = false;
 
     private static final String CHANNEL_ID = "Notification";
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
             if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
 
                 isBtConnected = true;
-                sendMsg("1");
+                sendMsg("-1");
             }
             if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 Toast.makeText(getApplicationContext(), "Device is Disconnect", Toast.LENGTH_SHORT).show();
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(receiver, filter);
     }
 
-    private void sendMsg(String msg){
+    public static void sendMsg(String msg){
         if (btSocket != null) {
 
             try { // Converting the string to bytes for transferring
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
                     //Log.e("Meow",  readMessage);
                     String [] res = readMessage.split("/");
                     for( String r : res){
-//                            Log.e("Meow", r);
+                            Log.e("Meow", r);
                     }
                 }
             }
@@ -341,6 +341,7 @@ public class MainActivity extends AppCompatActivity {
                             chang_Menu(fragment_Control);
                             return true;
                         case R.id.bottom_setting:
+                            sendMsg("2");
                             chang_Menu(fragment_weight);
                             return true;
                         case R.id.bottom_Information:

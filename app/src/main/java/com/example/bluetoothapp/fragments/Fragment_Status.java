@@ -19,12 +19,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bluetoothapp.Activity.MainActivity;
 import com.example.bluetoothapp.Models.Garbage_Can;
 import com.example.bluetoothapp.R;
 import com.example.bluetoothapp.Utils.Constant_Values;
 
 public class Fragment_Status extends Fragment {
-    private Button btnReload_Status_Frag, btnchangeThread_Status_Frag;
+    private Button btnchangeThread_Status_Frag;
     private ImageView img_Descrip_Status_Frag, img_NonRecycle_Status_frag,
             img_Recycle_Status_frag;
     private TextView txtPer_NonRecycle_Status_Frag, txtPer_Recycle_Status_Frag,
@@ -43,7 +44,6 @@ public class Fragment_Status extends Fragment {
     }
 
     private void SetUp(View view){
-        btnReload_Status_Frag = (Button) view.findViewById(R.id.btnReload_Status_Frag);
         btnchangeThread_Status_Frag = (Button) view.findViewById(R.id.btnchangeThread_Status_Frag);
         img_Descrip_Status_Frag = (ImageView) view.findViewById(R.id.img_Descrip_Status_Frag);
         img_NonRecycle_Status_frag = (ImageView) view.findViewById(R.id.img_NonRecycle_Status_frag);
@@ -61,16 +61,6 @@ public class Fragment_Status extends Fragment {
                         Constant_Values.HTU_Status
                 );
                 fragment_htu_dialog.show(getActivity().getSupportFragmentManager(), "dialog");
-            }
-        });
-
-        btnReload_Status_Frag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Reload < 2000){
-                    return;
-                }
-                mLastClick_Reload = SystemClock.elapsedRealtime();
             }
         });
 
@@ -107,7 +97,7 @@ public class Fragment_Status extends Fragment {
                 btn_change_dialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), txt_thread.getText().toString(), Toast.LENGTH_SHORT).show();
+                        MainActivity.sendMsg("t-"+ txt_thread.getText().toString());
                     }
                 });
                 dialog.show();

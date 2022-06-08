@@ -13,6 +13,7 @@ import android.widget.VideoView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bluetoothapp.Activity.MainActivity;
 import com.example.bluetoothapp.Models.Garbage_Can;
 import com.example.bluetoothapp.R;
 import com.example.bluetoothapp.Utils.Constant_Values;
@@ -68,6 +69,7 @@ public class Fragment_Control extends Fragment {
                     return;
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
+                MainActivity.sendMsg("5");
                 String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.tournado_rev;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
@@ -81,6 +83,7 @@ public class Fragment_Control extends Fragment {
                     return;
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
+                MainActivity.sendMsg("4");
                 String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.wind_mill;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
@@ -94,6 +97,7 @@ public class Fragment_Control extends Fragment {
                     return;
                 }
                 mLastClick_Sweep = SystemClock.elapsedRealtime();
+                MainActivity.sendMsg("3");
                 String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vertical_rect;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
@@ -106,13 +110,15 @@ public class Fragment_Control extends Fragment {
                 if (SystemClock.elapsedRealtime() - mLastClick_Mode < 4000){
                     return;
                 }
+                mLastClick_Mode = SystemClock.elapsedRealtime();
                 garbage_can.setMode(!garbage_can.isMode());
                 if(garbage_can.isMode()){
+                    MainActivity.sendMsg("0");
                     isAuto();
                 } else {
+                    MainActivity.sendMsg("1");
                     isControl();
                 }
-                mLastClick_Mode = SystemClock.elapsedRealtime();
                 String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vertical_rect;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();

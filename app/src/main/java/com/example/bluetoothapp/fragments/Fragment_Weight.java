@@ -85,6 +85,13 @@ public class Fragment_Weight extends Fragment {
                 onHandle(btn1000);
             }
         });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void onHandle(Button btn){
