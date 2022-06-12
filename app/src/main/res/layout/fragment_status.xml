@@ -82,6 +82,7 @@
         app:layout_constraintVertical_weight="12">
 
         <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="30dp"
@@ -121,7 +122,7 @@
                     android:id="@+id/txtThreadvalue_Frag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-451"
+                    android:text="100"
                     android:textColor="@color/app_themes"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -210,6 +211,21 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Value: 200"
+            android:textColor="@color/app_themes"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -217,7 +233,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:weightSum="12"
+        android:weightSum="22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -232,6 +248,23 @@
             android:enabled="false" />
 
         <Button
+            android:id="@+id/btnReload_Status_Frag"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:background="@drawable/custom_button_cart_frag"
+            android:text="Connect"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/txtHold_View1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:enabled="false" />
+
+        <Button
             android:id="@+id/btnchangeThread_Status_Frag"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -239,7 +272,7 @@
             android:background="@drawable/custom_button_cart_frag"
             android:padding="10dp"
             android:shadowRadius="10"
-            android:text="Change Thread"
+            android:text="Thread"
             android:textColor="@color/white"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 

@@ -25,13 +25,18 @@ import com.example.bluetoothapp.R;
 import com.example.bluetoothapp.Utils.Constant_Values;
 
 public class Fragment_Status extends Fragment {
-    private Button btnchangeThread_Status_Frag;
+    private Button btnchangeThread_Status_Frag, btnReload_Status_Frag;
     private ImageView img_Descrip_Status_Frag, img_NonRecycle_Status_frag,
             img_Recycle_Status_frag;
     private TextView txtPer_NonRecycle_Status_Frag, txtPer_Recycle_Status_Frag,
-            txtThreadvalue_Frag;
+            txtThreadvalue_Frag, txtValue;
     private Garbage_Can garbage_can;
+    private MainActivity mainActivity;
     private long mLastClick_Reload = 0, mLastClick_TakePhoto = 0;
+
+    public Fragment_Status(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,8 +56,17 @@ public class Fragment_Status extends Fragment {
         txtPer_NonRecycle_Status_Frag = (TextView) view.findViewById(R.id.txtPer_NonRecycle_Status_Frag);
         txtPer_Recycle_Status_Frag = (TextView) view.findViewById(R.id.txtPer_Recycle_Status_Frag);
         txtThreadvalue_Frag = (TextView) view.findViewById(R.id.txtThreadvalue_Frag);
+        txtValue = (TextView) view.findViewById(R.id.txtValue);
+        btnReload_Status_Frag = (Button) view.findViewById(R.id.btnReload_Status_Frag);
 
         updateView();
+
+        btnReload_Status_Frag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.clickConnect();
+            }
+        });
 
         img_Descrip_Status_Frag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +111,8 @@ public class Fragment_Status extends Fragment {
                 btn_change_dialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MainActivity.sendMsg("t-"+ txt_thread.getText().toString());
+                        MainActivity.sendMsg("t:"+ txt_thread.getText().toString());
+                        dialog.dismiss();
                     }
                 });
                 dialog.show();

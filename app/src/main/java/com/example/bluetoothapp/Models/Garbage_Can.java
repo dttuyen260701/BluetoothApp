@@ -4,17 +4,18 @@ public class Garbage_Can {
     private String ip;
     private boolean mode;//door 1 la dang la tu dong, door 0 la thu cong
     private int thread;
-    private float volume_recycle, volume_nonRecycle, weight_difference;
+    private float volume_recycle, volume_nonRecycle, weight_difference, value;
     //true la Mo, false la Dong
 
 
-    public Garbage_Can(String ip, boolean mode, int thread, float volume_recycle, float volume_nonRecycle, float weight_difference) {
+    public Garbage_Can(String ip, boolean mode, int thread, float volume_recycle, float volume_nonRecycle, float weight_difference, float value) {
         this.ip = ip;
         this.mode = mode;
         this.thread = thread;
         this.volume_recycle = volume_recycle;
         this.volume_nonRecycle = volume_nonRecycle;
         this.weight_difference = weight_difference;
+        this.value = value;
     }
 
     public String getIp() {
@@ -65,6 +66,14 @@ public class Garbage_Can {
         this.weight_difference = weight_difference;
     }
 
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return "Garbage_Can{" +
@@ -74,6 +83,7 @@ public class Garbage_Can {
                 ", volume_recycle=" + volume_recycle +
                 ", volume_nonRecycle=" + volume_nonRecycle +
                 ", weight_difference=" + weight_difference +
+                ", value=" + value +
                 '}';
     }
 }

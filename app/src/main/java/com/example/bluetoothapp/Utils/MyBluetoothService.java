@@ -80,7 +80,6 @@ public class MyBluetoothService {
                                 Constant_Values.MESSAGE_READ, numBytes, -1,
                                 mmBuffer);
                         String readMessage = new String(mmBuffer, 0,numBytes);
-                        Log.e("Msg res",readMessage);
                         ByteBuffer wrapped = ByteBuffer.wrap(mmBuffer); // big-endian by default
                         float num = wrapped.getFloat();
                         String k = new String(mmBuffer, 0, numBytes);
@@ -90,7 +89,6 @@ public class MyBluetoothService {
                         } catch (Exception e){
 
                         }
-                        Log.e("Test", "" + k);
                         readMsg.sendToTarget();
                     }
                     else SystemClock.sleep(100);

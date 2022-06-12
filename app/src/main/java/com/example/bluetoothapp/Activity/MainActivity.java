@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(garbage_can == null)
-            garbage_can = new Garbage_Can("", true,-451, 100f, 100f, -475);
+            garbage_can = new Garbage_Can("", true,-451, 100f, 100f, -475, 0);
         Constant_Values.garbage_can = garbage_can;
         AnhXa();
         setUp();
@@ -106,7 +106,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void resetConnection() {
+    public void clickConnect(){
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+//                    checkPermissions();
+        }
+        if(isBtConnected) {
+            resetConnection();
+        }else{
+
+            bluetoothAdapter.startDiscovery();
+        }
+    }
+
+    private static void resetConnection() {
 
 
         if (btSocket != null) {
@@ -265,12 +277,14 @@ public class MainActivity extends AppCompatActivity {
                 if(msg.what == Constant_Values.MESSAGE_READ){
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
-                    String readMessage = new String(readBuf, 0, msg.arg1);
+                    String readMessage1 = new String(readBuf, 0, msg.arg1);
+                    String [] readMessage = readMessage1.split("/");
                     //Log.e("Meow",  readMessage);
-                    String [] res = readMessage.split("/");
+                    String [] res = readMessage[0].split(",");
                     for( String r : res){
-                            Log.e("Meow", r);
+                        Log.e("Meow", r);
                     }
+                    Log.e("Meow", "End");
                 }
             }
         };
@@ -290,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUp(){
         createNotification();
-        fragment_Status = new Fragment_Status();
+        fragment_Status = new Fragment_Status(MainActivity.this);
         fragment_Control = new Fragment_Control();
         fragment_Information = new Fragment_Information();
         fragment_weight = new Fragment_Weight();

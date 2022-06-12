@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bluetoothapp.Activity.MainActivity;
 import com.example.bluetoothapp.Models.Garbage_Can;
 import com.example.bluetoothapp.R;
 import com.example.bluetoothapp.Utils.Constant_Values;
@@ -90,6 +91,33 @@ public class Fragment_Weight extends Fragment {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float scale = Float.parseFloat(
+                        txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) +
+                        Float.valueOf(txtStep.getText().toString().trim());
+                MainActivity.sendMsg("s:" + scale);
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                float scale = Float.parseFloat(
+                        txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) -
+                        Float.parseFloat(txtStep.getText().toString().trim());
+                MainActivity.sendMsg("s:" + scale);
+            }
+        });
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.sendMsg("s:" + txtScale_value.getText().toString());
             }
         });
     }
