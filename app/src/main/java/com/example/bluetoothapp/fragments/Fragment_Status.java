@@ -29,8 +29,7 @@ public class Fragment_Status extends Fragment {
     private ImageView img_Descrip_Status_Frag, img_NonRecycle_Status_frag,
             img_Recycle_Status_frag;
     private TextView txtPer_NonRecycle_Status_Frag, txtPer_Recycle_Status_Frag,
-            txtThreadvalue_Frag, txtValue;
-    private Garbage_Can garbage_can;
+            txtThreadvalue_Frag, txtValue, txtMode;
     private MainActivity mainActivity;
     private long mLastClick_Reload = 0, mLastClick_TakePhoto = 0;
 
@@ -42,7 +41,6 @@ public class Fragment_Status extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_status, container, false);
-        this.garbage_can = Constant_Values.garbage_can;
         SetUp(view);
         // Inflate the layout for this fragment
         return view;
@@ -57,6 +55,7 @@ public class Fragment_Status extends Fragment {
         txtPer_Recycle_Status_Frag = (TextView) view.findViewById(R.id.txtPer_Recycle_Status_Frag);
         txtThreadvalue_Frag = (TextView) view.findViewById(R.id.txtThreadvalue_Frag);
         txtValue = (TextView) view.findViewById(R.id.txtValue);
+        txtMode = (TextView) view.findViewById(R.id.txtMode);
         btnReload_Status_Frag = (Button) view.findViewById(R.id.btnReload_Status_Frag);
 
         updateView();
@@ -111,8 +110,14 @@ public class Fragment_Status extends Fragment {
                 btn_change_dialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MainActivity.sendMsg("t:"+ txt_thread.getText().toString());
-                        dialog.dismiss();
+                        try {
+                            float k = 0f;
+                            k = Float.parseFloat(txt_thread.getText().toString());
+                            MainActivity.sendMsg("t:"+ k);
+                            dialog.dismiss();
+                        } catch (Exception e){
+                            Toast.makeText(getContext(), "Vui lòng nhập đúng định dạng số", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 dialog.show();
@@ -121,16 +126,19 @@ public class Fragment_Status extends Fragment {
     }
 
     public void updateView(){
-        txtThreadvalue_Frag.setText(" " + garbage_can.getThread());
-        float per_Recycle = garbage_can.getVolume_recycle()/ Constant_Values.Volume_Machine,
-                per_NonRecycle = garbage_can.getVolume_nonRecycle()/Constant_Values.Volume_Machine;
+        txtThreadvalue_Frag.setText(" " + Constant_Values.garbage_can.getThread());
+        float per_Recycle = Constant_Values.garbage_can.getVolume_recycle()/ Constant_Values.Volume_Machine,
+                per_NonRecycle = Constant_Values.garbage_can.getVolume_nonRecycle()/Constant_Values.Volume_Machine;
         img_NonRecycle_Status_frag.setImageLevel((int) (10000*per_NonRecycle));
         img_Recycle_Status_frag.setImageLevel((int) (10000*per_Recycle));
-
+        String connect = (MainActivity.getBtConnected()) ? "Disconect" : "Connect";
+        btnReload_Status_Frag.setText(connect);
         per_NonRecycle = ((float) Math.round(per_NonRecycle*10000)/100);
         per_Recycle = ((float) Math.round(per_Recycle*10000)/100);
-
+        txtMode.setText("Mode: " + (Constant_Values.garbage_can.isMode() ? "Control" : "Auto"));
         txtPer_NonRecycle_Status_Frag.setText(per_NonRecycle + "%");
         txtPer_Recycle_Status_Frag.setText(per_Recycle + "%");
+        txtValue.setText("Value: " +Constant_Values.garbage_can.getValue() + "g");
+        txtThreadvalue_Frag.setText(Constant_Values.garbage_can.getThread()+"");
     }
 }

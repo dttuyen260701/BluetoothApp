@@ -4,15 +4,12 @@ import com.example.bluetoothapp.Models.Garbage_Can;
 
 public class Constant_Values {
     public static Garbage_Can garbage_can;
-    public static float Volume_Machine = 100f;
+    public static float Volume_Machine = 10f;
     public static int TIME_TO_UPDATE_GARBAGE = 1;
-    public static String HTU_Control = "You can open(<|>)/close(>|<) door by first button."
-            + "\nYou can open(▼)/close(▲) left/right door by two button next."
-            + "\nThe last button can help you turn on(Green)/off(Blue) power of machine."
-            + "\nNote: You must turn on machine to open all door.";
-
+    public static String HTU_Control = "You can chang mode from Auto to Control. In control mode you can attack servo and make Support shaft down the way you want.";
+    public static String HTU_Weight = "You can set Scale when to you see right measure of weight.";
     public static String SERVER_URL = "https://dbdc-171-244-210-156.ngrok.io";
-    public static String HTU_Status = SERVER_URL + "";
+    public static String HTU_Status = "Blue is smaller than threshold and Green is bigger than threshold.";
     public static String TAKE_PIC = SERVER_URL +"/takepic";
     public static String IMAGE_URL = SERVER_URL +"/static/img/img2.jpg";
     public static String URL_ABOUT_US = "https://www.facebook.com";

@@ -56,13 +56,12 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
     BluetoothAdapter bluetoothAdapter;
     static BluetoothSocket btSocket = null;
-    Boolean isBtConnected = false;
+    static Boolean isBtConnected = false;
 
     private static final String CHANNEL_ID = "Notification";
     private static final int NOTIFICATION_ID = 121;
     private static BottomNavigationView bottom_Navigation;
     private Fragment fragment_Status, fragment_Control, fragment_Information, fragment_weight;
-    private Garbage_Can garbage_can;
     private static CountDownTimer countDownTimer;
     MyBluetoothService bluetoothService = null;
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -70,14 +69,17 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] REQUIRED_SDK_PERMISSIONS = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.BLUETOOTH_SCAN};
 
+    public static Boolean getBtConnected() {
+        return isBtConnected;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(garbage_can == null)
-            garbage_can = new Garbage_Can("", true,-451, 100f, 100f, -475, 0);
-        Constant_Values.garbage_can = garbage_can;
+        if(Constant_Values.garbage_can == null)
+            Constant_Values.garbage_can = new Garbage_Can("", true,-451, 10f, 10f, -475, 0);
         AnhXa();
         setUp();
 
@@ -203,10 +205,10 @@ public class MainActivity extends AppCompatActivity {
                     String deviceHardwareAddress = device.getAddress();
                     if(deviceHardwareAddress.equals("00:21:09:01:15:8A")){
                         ConnectDevice(deviceHardwareAddress);
+                        Toast.makeText(MainActivity.this,
+                                "Device" + deviceName + " " + deviceHardwareAddress,
+                                Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(MainActivity.this,
-                            "Device" + deviceName + " " + deviceHardwareAddress,
-                            Toast.LENGTH_SHORT).show();
                     Log.e("Device", deviceName + " " + deviceHardwareAddress);
                 }
             }
@@ -280,11 +282,77 @@ public class MainActivity extends AppCompatActivity {
                     String readMessage1 = new String(readBuf, 0, msg.arg1);
                     String [] readMessage = readMessage1.split("/");
                     //Log.e("Meow",  readMessage);
-                    String [] res = readMessage[0].split(",");
-                    for( String r : res){
-                        Log.e("Meow", r);
+                    String [] res = readMessage[0].split(":");
+                    Log.e("Meow", readMessage[0]);
+                    if(res.length == 6){
+                        float s1=0, s2=0, thresh=0, value=0, scale=0;
+                        boolean mode = false;
+                        try {
+                            s1 = Float.valueOf(res[0]);
+                        }catch (Exception e){
+                        }
+                        Constant_Values.garbage_can.setVolume_recycle(s1);
+                        try {
+                            s2 = Float.valueOf(res[1]);
+                        }catch (Exception e){
+                        }
+                        Constant_Values.garbage_can.setVolume_nonRecycle(s2);
+                        try {
+                            thresh = Float.valueOf(res[2]);
+                        }catch (Exception e){
+                        }
+                        Constant_Values.garbage_can.setThread(thresh);
+                        try {
+                            value = Float.valueOf(res[3]);
+                        }catch (Exception e){
+                        }
+                        Constant_Values.garbage_can.setValue(value);
+                        try {
+                            mode = (Integer.valueOf(res[4]) == 1) ? true : false;
+                        }catch (Exception e){
+                        }
+                        Constant_Values.garbage_can.setMode(mode);
+                        try {
+                            scale = Float.valueOf(res[5]);
+                        }catch (Exception e){
+
+                        }
+                        Constant_Values.garbage_can.setWeight_difference(scale);
+                        switch (bottom_Navigation.getSelectedItemId()){
+                            case R.id.bottom_Status:
+                                ((Fragment_Status) fragment_Status).updateView();
+                                break;
+                            case R.id.bottom_Control:
+                                ((Fragment_Control) fragment_Control).updateView();
+                                break;
+                            default:
+                                break;
+                        }
+                        createNotification();
+                    } else if (res[0].equals("S") && res.length == 3){
+                        if(bottom_Navigation.getSelectedItemId() == R.id.bottom_setting){
+                            float k1 = 0;
+                            try {
+                                k1 = Float.valueOf(res[1]);
+                            } catch (Exception e){
+
+                            }
+                            Constant_Values.garbage_can.setValue(k1);
+                            float k = 0;
+                            try {
+                                k = Float.valueOf(res[2]);
+                            } catch (Exception e){
+
+                            }
+                            Constant_Values.garbage_can.setWeight_difference(k);
+                            if( k != 0){
+                                ((Fragment_Weight) fragment_weight).updateView("Weight: "
+                                        + Constant_Values.garbage_can.getValue()
+                                        + "g - Scale:"
+                                        + Constant_Values.garbage_can.getWeight_difference());
+                            }
+                        }
                     }
-                    Log.e("Meow", "End");
                 }
             }
         };
@@ -309,38 +377,6 @@ public class MainActivity extends AppCompatActivity {
         fragment_Information = new Fragment_Information();
         fragment_weight = new Fragment_Weight();
         chang_Menu(fragment_Status);
-        if(countDownTimer != null){
-            countDownTimer.cancel();
-        }
-        countDownTimer = new CountDownTimer(60*60*60,
-                //Constant_Values.TIME_TO_UPDATE_GARBAGE*60*1000) {
-            5000){
-            @Override
-            public void onTick(long l) {
-                if(garbage_can.getVolume_nonRecycle() >= 100)
-                    garbage_can.setVolume_nonRecycle(0);
-                if(garbage_can.getVolume_recycle() >= 100)
-                    garbage_can.setVolume_recycle(0);
-                garbage_can.setVolume_nonRecycle(garbage_can.getVolume_nonRecycle() + 10);
-                garbage_can.setVolume_recycle(garbage_can.getVolume_recycle() + 10);
-                switch (bottom_Navigation.getSelectedItemId()){
-                    case R.id.bottom_Status:
-                        ((Fragment_Status) fragment_Status).updateView();
-                        break;
-                    case R.id.bottom_setting:
-                        ((Fragment_Weight) fragment_weight).updateView();
-                        break;
-                    default:
-                        break;
-                }
-                createNotification();
-            }
-            @Override
-            public void onFinish() {
-                this.start();
-            }
-        };
-        countDownTimer.start();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
@@ -350,9 +386,11 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.bottom_Status:
                             chang_Menu(fragment_Status);
+                            sendMsg("" + ((Constant_Values.garbage_can.isMode() ? 1 : 0)));
                             return true;
                         case R.id.bottom_Control:
                             chang_Menu(fragment_Control);
+                            sendMsg("" + ((Constant_Values.garbage_can.isMode() ? 1 : 0)));
                             return true;
                         case R.id.bottom_setting:
                             sendMsg("2");
@@ -380,8 +418,8 @@ public class MainActivity extends AppCompatActivity {
     private void createNotification(){
         check_SDK_Notification();
 
-        float per_Recycle = garbage_can.getVolume_recycle()/ Constant_Values.Volume_Machine,
-                per_NonRecycle = garbage_can.getVolume_nonRecycle()/Constant_Values.Volume_Machine;
+        float per_Recycle = Constant_Values.garbage_can.getVolume_recycle()/ Constant_Values.Volume_Machine,
+                per_NonRecycle = Constant_Values.garbage_can.getVolume_nonRecycle()/Constant_Values.Volume_Machine;
 
 
         RemoteViews notification_layout =

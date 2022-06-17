@@ -215,6 +215,28 @@
             app:layout_constraintEnd_toEndOf="@+id/btn_servor"
             app:layout_constraintStart_toStartOf="@+id/btn_servor" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Bigger"
+            android:textColor="@color/app_themes"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_btn_Door"
+            app:layout_constraintEnd_toEndOf="@+id/layout_btn_Door" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Smaller"
+            android:textColor="@color/app_themes"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_btn_Door"
+            app:layout_constraintStart_toStartOf="@+id/layout_btn_Door" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

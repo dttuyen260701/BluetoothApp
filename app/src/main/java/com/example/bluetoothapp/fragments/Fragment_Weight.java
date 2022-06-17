@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,20 +27,22 @@ import com.example.bluetoothapp.Models.Garbage_Can;
 import com.example.bluetoothapp.R;
 import com.example.bluetoothapp.Utils.Constant_Values;
 
+import java.util.ArrayList;
+
 public class Fragment_Weight extends Fragment {
-    private Garbage_Can garbage_can;
     private Button btn1, btn10, btn100, btn1000,
             btnDiv, btnAdd, btnSend;
     private TextView txtValue_Weght_Frag;
     private EditText txtStep, txtScale_value;
-    private RecyclerView rcl_Weight_Frag;
+    private ListView rcl_Weight_Frag;
     private ImageView img_Descrip_Weight_Frag;
+    private ArrayList<String> list_arr;
+    private ArrayAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_weight, container, false);
-        this.garbage_can = Constant_Values.garbage_can;
         SetUp(view);
         // Inflate the layout for this fragment
         return view;
@@ -55,9 +59,27 @@ public class Fragment_Weight extends Fragment {
         txtValue_Weght_Frag = (TextView) view.findViewById(R.id.txtValue_Weght_Frag);
         txtStep = (EditText) view.findViewById(R.id.txtStep);
         txtScale_value = (EditText) view.findViewById(R.id.txtScale_value);
-        rcl_Weight_Frag = (RecyclerView) view.findViewById(R.id.rcl_Weight_Frag);
+        rcl_Weight_Frag = (ListView) view.findViewById(R.id.rcl_Weight_Frag);
         img_Descrip_Weight_Frag= (ImageView) view.findViewById(R.id.img_Descrip_Weight_Frag);
-        updateView();
+        list_arr = new ArrayList<>();
+
+        img_Descrip_Weight_Frag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_HTU_Dialog fragment_htu_dialog = new Fragment_HTU_Dialog(
+                        Constant_Values.HTU_Weight
+                );
+                fragment_htu_dialog.show(getActivity().getSupportFragmentManager(), "dialog");
+            }
+        });
+
+        adapter = new ArrayAdapter(
+                getActivity(), android.R.layout.simple_list_item_1, list_arr
+        );
+        rcl_Weight_Frag.setAdapter(adapter);
+        updateView("");
+        list_arr.clear();
+        adapter.notifyDataSetChanged();
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,27 +119,43 @@ public class Fragment_Weight extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float scale = Float.parseFloat(
-                        txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) +
-                        Float.valueOf(txtStep.getText().toString().trim());
-                MainActivity.sendMsg("s:" + scale);
+                try {
+                    float k = 0f;
+                    k = Float.valueOf(txtStep.getText().toString().trim());
+                    float scale = Float.parseFloat(
+                            txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) +k;
+                    MainActivity.sendMsg("s:" + scale);
+                } catch (Exception e ){
+                    Toast.makeText(getContext(), "Vui lòng nhập đúng định dạng số", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float scale = Float.parseFloat(
-                        txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) -
-                        Float.parseFloat(txtStep.getText().toString().trim());
-                MainActivity.sendMsg("s:" + scale);
+                try {
+                    float k = 0f;
+                    k = Float.valueOf(txtStep.getText().toString().trim());
+                    float scale = Float.parseFloat(
+                            txtValue_Weght_Frag.getText().toString().trim().split(":")[1]) -k;
+                    MainActivity.sendMsg("s:" + scale);
+                } catch (Exception e ){
+                    Toast.makeText(getContext(), "Vui lòng nhập đúng định dạng số", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.sendMsg("s:" + txtScale_value.getText().toString());
+                try {
+                    float k = 0f;
+                    k = Float.valueOf(txtScale_value.getText().toString());
+                    MainActivity.sendMsg("s:" + k);
+                } catch (Exception e ){
+                    Toast.makeText(getContext(), "Vui lòng nhập đúng định dạng số", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -126,7 +164,12 @@ public class Fragment_Weight extends Fragment {
         txtStep.setText(btn.getText().toString());
     }
 
-    public void updateView(){
-
+    public void updateView(String add){
+        txtValue_Weght_Frag.setText("Scale: " + Constant_Values.garbage_can.getWeight_difference());
+        if(list_arr.size() > 100)
+            list_arr.clear();
+        list_arr.add(add);
+        adapter.notifyDataSetChanged();
+        rcl_Weight_Frag.setSelection(list_arr.size()-1);
     }
 }

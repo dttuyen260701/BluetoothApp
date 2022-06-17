@@ -107,7 +107,7 @@
                     android:id="@+id/txtThread_status_Frag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thread: "
+                    android:text="Threshold:"
                     android:textColor="@color/app_themes"
                     android:textSize="22sp"
                     android:textStyle="bold"
@@ -217,15 +217,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Value: 200"
+            android:text="Value: 200g"
             android:textColor="@color/app_themes"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
             app:layout_constraintStart_toStartOf="@+id/linearLayout5"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/txtMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:text="Mode: Auto"
+            android:textColor="@color/app_themes"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txtValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

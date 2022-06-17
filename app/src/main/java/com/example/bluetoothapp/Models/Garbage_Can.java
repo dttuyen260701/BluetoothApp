@@ -3,7 +3,7 @@ package com.example.bluetoothapp.Models;
 public class Garbage_Can {
     private String ip;
     private boolean mode;//door 1 la dang la tu dong, door 0 la thu cong
-    private int thread;
+    private float thread;
     private float volume_recycle, volume_nonRecycle, weight_difference, value;
     //true la Mo, false la Dong
 
@@ -34,11 +34,11 @@ public class Garbage_Can {
         this.mode = mode;
     }
 
-    public int getThread() {
+    public float getThread() {
         return thread;
     }
 
-    public void setThread(int thread) {
+    public void setThread(float thread) {
         this.thread = thread;
     }
 

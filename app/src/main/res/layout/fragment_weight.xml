@@ -94,7 +94,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="0.7" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
             android:id="@+id/rcl_Weight_Frag"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -105,9 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_Weight"
-            app:layout_constraintVertical_weight="8">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintVertical_weight="8"/>
 
         <TextView
             android:id="@+id/txtValue_Weght_Frag"

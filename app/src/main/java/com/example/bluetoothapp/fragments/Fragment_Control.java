@@ -24,7 +24,6 @@ public class Fragment_Control extends Fragment {
             btnMode_control_Frag;
     private ImageView img_Descrip_Control_Frag, btn_servor;
     private VideoView video_Preview_Control;
-    private Garbage_Can garbage_can;
     private long mLastClick_Mode = 0, mLastClick_Sweep = 0,
             mLastClick_LRDoor = 0;
 
@@ -32,7 +31,6 @@ public class Fragment_Control extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_control, container, false);
-        this.garbage_can = Constant_Values.garbage_can;
         SetUp(view);
         // Inflate the layout for this fragment
         return view;
@@ -46,10 +44,10 @@ public class Fragment_Control extends Fragment {
         btn_servor = (ImageView) view.findViewById(R.id.btn_servor);
         video_Preview_Control = (VideoView) view.findViewById(R.id.video_Preview_Control);
 
-        if(garbage_can.isMode()){
-            isAuto();
-        } else {
+        if(Constant_Values.garbage_can.isMode()){
             isControl();
+        } else {
+            isAuto();
         }
 
         img_Descrip_Control_Frag.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +63,7 @@ public class Fragment_Control extends Fragment {
         btn_down_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_LRDoor < 4000){
+                if (SystemClock.elapsedRealtime() - mLastClick_LRDoor < 5000){
                     return;
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
@@ -79,7 +77,7 @@ public class Fragment_Control extends Fragment {
         btn_down_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_LRDoor < 4000){
+                if (SystemClock.elapsedRealtime() - mLastClick_LRDoor < 5000){
                     return;
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
@@ -93,7 +91,7 @@ public class Fragment_Control extends Fragment {
         btn_servor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Sweep < 4000){
+                if (SystemClock.elapsedRealtime() - mLastClick_Sweep < 2000){
                     return;
                 }
                 mLastClick_Sweep = SystemClock.elapsedRealtime();
@@ -107,12 +105,13 @@ public class Fragment_Control extends Fragment {
         btnMode_control_Frag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Mode < 4000){
+                if (SystemClock.elapsedRealtime() - mLastClick_Mode < 2000){
                     return;
                 }
                 mLastClick_Mode = SystemClock.elapsedRealtime();
-                garbage_can.setMode(!garbage_can.isMode());
-                if(garbage_can.isMode()){
+                boolean mode = Constant_Values.garbage_can.isMode();
+                Constant_Values.garbage_can.setMode(!mode);
+                if(mode){
                     MainActivity.sendMsg("0");
                     isAuto();
                 } else {
@@ -140,5 +139,13 @@ public class Fragment_Control extends Fragment {
         btn_servor.setEnabled(true);
         btn_down_left.setEnabled(true);
         btn_down_right.setEnabled(true);
+    }
+
+    public void updateView(){
+        if(Constant_Values.garbage_can.isMode()){
+            isControl();
+        } else {
+            isAuto();
+        }
     }
 }
