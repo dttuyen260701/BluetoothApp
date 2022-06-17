@@ -64,6 +64,8 @@ public class Fragment_Status extends Fragment {
             @Override
             public void onClick(View view) {
                 mainActivity.clickConnect();
+                String connect = (MainActivity.getBtConnected()) ? "Disconect" : "Connect";
+                btnReload_Status_Frag.setText(connect);
             }
         });
 
