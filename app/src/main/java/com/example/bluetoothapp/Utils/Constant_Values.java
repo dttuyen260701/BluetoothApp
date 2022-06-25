@@ -4,7 +4,7 @@ import com.example.bluetoothapp.Models.Garbage_Can;
 
 public class Constant_Values {
     public static Garbage_Can garbage_can;
-    public static float Volume_Machine = 10f;
+    public static float Volume_Machine = 7f;
     public static int TIME_TO_UPDATE_GARBAGE = 1;
     public static String HTU_Control = "You can chang mode from Auto to Control. In control mode you can attack servo and make Support shaft down the way you want.";
     public static String HTU_Weight = "You can set Scale when to you see right measure of weight.";

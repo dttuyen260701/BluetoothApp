@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(Constant_Values.garbage_can == null)
-            Constant_Values.garbage_can = new Garbage_Can("", true,-451, 10f, 10f, -475, 0);
+            Constant_Values.garbage_can = new Garbage_Can("", true,-451, 0f, 0f, -475, 0);
         AnhXa();
         setUp();
 

@@ -68,7 +68,7 @@ public class Fragment_Control extends Fragment {
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
                 MainActivity.sendMsg("5");
-                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.tournado_rev;
+                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.small;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
             }
@@ -82,7 +82,7 @@ public class Fragment_Control extends Fragment {
                 }
                 mLastClick_LRDoor = SystemClock.elapsedRealtime();
                 MainActivity.sendMsg("4");
-                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.wind_mill;
+                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.bigger;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
             }
@@ -96,7 +96,7 @@ public class Fragment_Control extends Fragment {
                 }
                 mLastClick_Sweep = SystemClock.elapsedRealtime();
                 MainActivity.sendMsg("3");
-                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vertical_rect;
+                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.servo;
                 video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
             }
@@ -118,8 +118,6 @@ public class Fragment_Control extends Fragment {
                     MainActivity.sendMsg("1");
                     isControl();
                 }
-                String path = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vertical_rect;
-                video_Preview_Control.setVideoURI(Uri.parse(path));
                 video_Preview_Control.start();
             }
         });
