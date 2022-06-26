@@ -120,7 +120,7 @@ public class Fragment_Weight extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 1000){
                     return;
                 }
                 mLastClick_Change = SystemClock.elapsedRealtime();
@@ -139,7 +139,7 @@ public class Fragment_Weight extends Fragment {
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 1000){
                     return;
                 }
                 mLastClick_Change = SystemClock.elapsedRealtime();
@@ -158,7 +158,7 @@ public class Fragment_Weight extends Fragment {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 1000){
                     return;
                 }
                 mLastClick_Change = SystemClock.elapsedRealtime();
