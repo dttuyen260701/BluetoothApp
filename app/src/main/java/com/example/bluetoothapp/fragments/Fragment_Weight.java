@@ -38,6 +38,7 @@ public class Fragment_Weight extends Fragment {
     private ImageView img_Descrip_Weight_Frag;
     private ArrayList<String> list_arr;
     private ArrayAdapter adapter;
+    private long mLastClick_Change = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,6 +120,10 @@ public class Fragment_Weight extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                    return;
+                }
+                mLastClick_Change = SystemClock.elapsedRealtime();
                 try {
                     float k = 0f;
                     k = Float.valueOf(txtStep.getText().toString().trim());
@@ -134,6 +139,10 @@ public class Fragment_Weight extends Fragment {
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                    return;
+                }
+                mLastClick_Change = SystemClock.elapsedRealtime();
                 try {
                     float k = 0f;
                     k = Float.valueOf(txtStep.getText().toString().trim());
@@ -149,6 +158,10 @@ public class Fragment_Weight extends Fragment {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClick_Change < 500){
+                    return;
+                }
+                mLastClick_Change = SystemClock.elapsedRealtime();
                 try {
                     float k = 0f;
                     k = Float.valueOf(txtScale_value.getText().toString());
